@@ -9,7 +9,7 @@ app:
     username: testPersonUser
     password: xCMbk5081
   pet:
-   url: http://localhost:8080/pet
+   url: http://localhost:8081/pet
    basic:
     username: testPetUser
     password: xCMbk5082

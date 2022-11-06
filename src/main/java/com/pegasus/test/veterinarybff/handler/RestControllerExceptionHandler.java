@@ -38,10 +38,20 @@ public class RestControllerExceptionHandler {
 	}
 
 
-//	@ExceptionHandler(FeignException.class)
-	public ResponseEntity<ApiResponseErrorDto> handleException(FeignException exception) throws JsonMappingException, JsonProcessingException{
-		return ResponseEntity.status(HttpStatus.valueOf(exception.status()))
-				.body(objectMapper.readValue(exception.contentUTF8(), ApiResponseErrorDto.class));
+	@ExceptionHandler(FeignException.class)
+	public ResponseEntity<Object> handleException(FeignException exception) throws JsonMappingException, JsonProcessingException{
+		try {
+			ApiResponseErrorDto responseErrorDto = objectMapper.readValue(exception.contentUTF8(), ApiResponseErrorDto.class);
+			if(responseErrorDto.getErrors() != null)
+				return ResponseEntity.status(HttpStatus.valueOf(exception.status()))
+					.body(responseErrorDto);
+			return ResponseEntity.status(HttpStatus.valueOf(exception.status()))
+					.body(exception.contentUTF8());	
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.valueOf(exception.status()))
+					.body(exception.contentUTF8());	
+		}
+	
 
 	}
 
