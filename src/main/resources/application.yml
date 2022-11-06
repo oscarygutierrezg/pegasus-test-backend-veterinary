@@ -1,0 +1,25 @@
+server:
+ servlet:
+  context-path: /veterinary
+app:
+ ms:
+  person:
+   url: http://localhost:8080/person
+   basic:
+    username: testPersonUser
+    password: xCMbk5081
+  pet:
+   url: http://localhost:8080/pet
+   basic:
+    username: testPetUser
+    password: xCMbk5082
+ api:
+  basic:
+   username: testVeterinaryUser
+   password: xCMbk5083
+springdoc:
+ api-docs:
+  path: /api-docs
+ swagger-ui:
+  path: /swagger-ui.html
+ version: 3.0
