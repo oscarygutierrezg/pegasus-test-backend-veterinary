@@ -16,7 +16,7 @@ public class SpringMVCConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(final InterceptorRegistry registry) {
-		//registry.addInterceptor(securityInterceptor);
+		registry.addInterceptor(securityInterceptor);
 	}
 
 }
